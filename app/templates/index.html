@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% for u in users %}
+	<li>Hi {{ u.username }}, your email is {{ u.email }} </li>
+{% endfor %}
+
+<H3>Submit Query</H3>
+<form action="" method=post>
+   {{form.hidden_tag()}}
+   <dl>
+      <dt>Title:
+      <dd>{{ form.text }}
+   </dl>
+   <p>
+      <input type=submit value="Publish">
+</form>
+
+{% endblock %}
