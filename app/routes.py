@@ -6,9 +6,8 @@ from app.models import User, Post
 @app.route('/', methods=['GET', 'POST'])
 @app.route('/index', methods=['GET', 'POST'])
 def index():
-	form = AForm()
 	users = User.query.all()
-	return render_template('index.html', title='Home', users=users, form=form)
+	return render_template('index.html', title='Home', users=users)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -18,3 +17,10 @@ def login():
 			form.username.data, form.remember_me.data))
 		return redirect(url_for('index'))
 	return render_template('login.html', title='Sign In', form=form)
+
+@app.route('/test', methods=['GET', 'POST'])
+def test():
+	form = AForm()
+	if form.is_submitted():
+		return redirect(url_for('index'))
+	return render_template('test.html', title='test', form=form)
